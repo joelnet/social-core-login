@@ -10,6 +10,19 @@
     "url": "git://github.com/"
   },
   "dependencies": {
-    "jsonwebtoken": "^5.7.0"
+    "aws-sdk": "^2.3.0",
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.3.4",
+    "bs58": "^3.0.0",
+    "js-scrypt": "^0.2.0",
+    "jsonwebtoken": "^5.7.0",
+    "lodash": "4.8.2",
+    "uuid": "2.0.1"
+  },
+  "devDependencies": {
+    "expect.js": "0.3.1",
+    "serverless-cors-plugin": "^0.4.1",
+    "serverless-runtime-babel": "0.0.6",
+    "sinon": "1.17.3"
   }
 }

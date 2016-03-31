@@ -1,5 +1,5 @@
 {
-  "name": "login",
+  "name": "auth-verify",
   "runtime": "nodejs",
   "description": "Serverless Lambda function for project: social-core",
   "customName": false,
@@ -9,11 +9,18 @@
   "memorySize": 1024,
   "authorizer": {},
   "custom": {
-    "excludePatterns": []
+    "excludePatterns": [ ],
+    "cors": {
+      "allowOrigin": "*",
+      "allowHeaders": [ "Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key" ]
+    },
+    "optimize": {
+      "exclude": [ "aws-sdk" ]
+    }
   },
   "endpoints": [
     {
-      "path": "login",
+      "path": "verify",
       "method": "GET",
       "type": "AWS",
       "authorizationType": "none",

@@ -19,30 +19,72 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Compile Include="api\account\create\handler.js" />
+    <Compile Include="api\auth\refresh\handler.js" />
+    <Compile Include="api\auth\verify\handler.js" />
+    <Compile Include="api\lib\crypto.js" />
+    <Compile Include="api\services\account.js" />
+    <Compile Include="api\services\authentication.js" />
+    <Compile Include="api\services\storage.js" />
+    <Compile Include="test\services-account.js" />
+    <Compile Include="test\lib-crypto.js" />
+    <Compile Include="test\services-authentication.js" />
+    <Compile Include="www\js\api.js" />
+    <Compile Include="www\js\lib\pegasus.js" />
+    <Compile Include="www\js\lib\vue.js" />
+    <Compile Include="www\js\lib\vue.min.js" />
+    <Content Include="api\account\create\event.json" />
+    <Content Include="api\account\create\s-function.json" />
+    <Content Include="api\auth\refresh\event.json" />
+    <Content Include="api\auth\refresh\s-function.json" />
+    <Content Include="api\auth\verify\event.json" />
+    <Content Include="api\auth\verify\s-function.json" />
+    <Content Include="api\config.json" />
     <Content Include="package.json" />
     <Content Include="s-project.json" />
     <Content Include="s-resources-cf.json" />
-    <Content Include="auth\login\event.json" />
-    <Content Include="auth\login\s-function.json" />
-    <Compile Include="auth\login\handler.js" />
-    <Content Include="_meta\resources\s-resources-cf-dev-uswest2.json" />
-    <Content Include="_meta\variables\s-variables-common.json" />
-    <Content Include="_meta\variables\s-variables-dev-uswest2.json" />
-    <Content Include="_meta\variables\s-variables-dev.json" />
+    <Content Include="api\auth\login\event.json" />
+    <Content Include="api\auth\login\s-function.json" />
+    <Compile Include="api\auth\login\handler.js" />
+    <Content Include="www\index.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="_meta" />
-    <Folder Include="_meta\resources" />
-    <Folder Include="_meta\variables" />
-    <Folder Include="auth" />
-    <Folder Include="auth\login" />
-    <Folder Include="services" />
+    <Folder Include="api\account\" />
+    <Folder Include="api\account\create\" />
+    <Folder Include="api\auth\refresh\" />
+    <Folder Include="api\auth\verify\" />
+    <Folder Include="api\lib\" />
+    <Folder Include="api\" />
+    <Folder Include="www\" />
+    <Folder Include="test\" />
+    <Folder Include="typings\" />
+    <Folder Include="typings\node\" />
+    <Folder Include="typings\rx\" />
+    <Folder Include="api\auth\" />
+    <Folder Include="api\auth\login\" />
+    <Folder Include="api\services\" />
+    <Folder Include="www\js\" />
+    <Folder Include="www\js\lib\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="services\AuthLoginService.ts" />
+    <TypeScriptCompile Include="typings\node\node.d.ts" />
+    <TypeScriptCompile Include="typings\rx\rx-lite.d.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES6</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>

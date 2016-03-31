@@ -1,4 +1,8 @@
 {
   "name": "social-core",
-  "custom": {}
+  "custom": { },
+  "plugins": [
+    "serverless-cors-plugin",
+    "serverless-runtime-babel"
+  ]
 }

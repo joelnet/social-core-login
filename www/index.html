@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script type="text/javascript" src="js/lib/vue.js"></script>
+    <script type="text/javascript" src="js/lib/pegasus.js"></script>
+    <script type="text/javascript" src="js/lib/strg.min.js"></script>
+    <script type="text/javascript" src="js/api.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <form v-if="!identity">
+        
+            <h1>Login</h1>
+        
+            <table>
+                <tr>
+                    <td>email address:</td>
+                    <td><input type="text" v-model="loginForm.emailAddress" /></td>
+                </tr>
+                <tr>
+                    <td>password:</td>
+                    <td><input type="password" id="password" v-model="loginForm.password" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="button" v-on:click="login">login</button>
+                        or
+                        <button type="button" v-on:click="createAccount">create account</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="color:red;">{{ loginForm.message }}</td>
+                </tr>
+            </table>
+        </form>
+        
+        <div v-if="identity">
+            <h2>Welcome {{identity.emailAddress}}</h2>
+            <button type="button" v-on:click="logout">logout</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>

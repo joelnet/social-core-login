@@ -1,0 +1,57 @@
+{
+  "name": "account-create",
+  "runtime": "babel",
+  "description": "Serverless Lambda function for project: social-core",
+  "customName": false,
+  "customRole": false,
+  "handler": "account/create/handler.handler",
+  "timeout": 6,
+  "memorySize": 1024,
+  "authorizer": { },
+  "custom": {
+    "cors": {
+      "allowOrigin": "*",
+      "allowHeaders": [ "Content-Type", "X-Amz-Date", "Authorization", "X-Api-Key" ]
+    },
+    "optimize": {
+      "exclude": [ "aws-sdk" ]
+    }
+  },
+  "endpoints": [
+    {
+      "path": "account/create",
+      "method": "GET",
+      "type": "AWS",
+      "authorizationType": "none",
+      "authorizerFunction": false,
+      "apiKeyRequired": false,
+      "requestParameters": { },
+      "requestTemplates": {
+        "application/json": "{\"appId\":\"$input.params('appId')\",\"emailAddress\":\"$input.params('emailAddress')\",\"password\":\"$input.params('password')\"}"
+      },
+      "responses": {
+        "400": {
+          "statusCode": "400"
+        },
+        "default": {
+          "statusCode": "200",
+          "responseParameters": { },
+          "responseModels": { },
+          "responseTemplates": {
+            "application/json": ""
+          }
+        }
+      }
+    }
+  ],
+  "events": [ ],
+  "environment": {
+    "SERVERLESS_PROJECT": "${project}",
+    "SERVERLESS_STAGE": "${stage}",
+    "SERVERLESS_REGION": "${region}"
+  },
+  "vpc": {
+    "securityGroupIds": [ ],
+    "subnetIds": [ ]
+  }
+}

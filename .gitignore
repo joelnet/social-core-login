@@ -45,3 +45,5 @@ _meta
 #Ignore Visual Studio Files
 *.suo
 [Oo]bj/*
+.ntvs_analysis.dat
+bin/
