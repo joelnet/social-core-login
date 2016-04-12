@@ -20,15 +20,15 @@
   },
   "endpoints": [
     {
-      "path": "refresh",
-      "method": "GET",
+      "path": "auth/refresh",
+      "method": "POST",
       "type": "AWS",
       "authorizationType": "none",
       "authorizerFunction": false,
       "apiKeyRequired": false,
       "requestParameters": {},
       "requestTemplates": {
-        "application/json": ""
+        "application/json": "{\"appId\":\"$input.params('appId')\",\"token\":\"$input.params('token')\"}"
       },
       "responses": {
         "400": {

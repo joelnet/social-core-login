@@ -11,17 +11,17 @@
         params = (params || {});
         params.appId = appId;
 
-        return pegasus(root + method + serialize(params));
+        fetchival.mode = 'cors';
+
+        return fetchival(root)(method).get(params);
     };
 
-    function serialize(obj) {
-        var queryString = Object.keys(obj)
-            .map(function (k) {
-                return k + '=' + encodeURIComponent(obj[k]);
-            }).join('&');
+    api.post = function (method, params) {
+        params = (params || {});
+        params.appId = appId;
 
-        return queryString.length ? '?' + queryString : '';
-    }
+        return fetchival(root)(method).post(params);
+    };
 
     global.api = global.api || api;
 

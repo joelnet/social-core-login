@@ -30,9 +30,11 @@
     <Compile Include="test\lib-crypto.js" />
     <Compile Include="test\services-authentication.js" />
     <Compile Include="www\js\api.js" />
+    <Compile Include="www\js\app.js" />
     <Compile Include="www\js\lib\pegasus.js" />
     <Compile Include="www\js\lib\vue.js" />
     <Compile Include="www\js\lib\vue.min.js" />
+    <Content Include=".babelrc" />
     <Content Include="api\account\create\event.json" />
     <Content Include="api\account\create\s-function.json" />
     <Content Include="api\auth\refresh\event.json" />
@@ -41,6 +43,7 @@
     <Content Include="api\auth\verify\s-function.json" />
     <Content Include="api\config.json" />
     <Content Include="package.json" />
+    <Content Include="README.md" />
     <Content Include="s-project.json" />
     <Content Include="s-resources-cf.json" />
     <Content Include="api\auth\login\event.json" />
