@@ -1,12 +1,12 @@
 ﻿'use strict';
 
-const config  = require('../config.json');
-const crypto  = require('../lib/crypto');
-const Promise = require('bluebird');
-const storage = require('./storage');
-const _       = require('lodash');
+import config  from '../config.json';
+import { generateUuid, hashSync } from '../lib/crypto';
+import Promise from 'bluebird';
+import { createUser } from './storage';
+import _       from 'lodash';
 
-const messages = {
+export const messages = {
     argumentNull:     arg             => `${arg}: argument cannot be null.`,
     create:           username        => ({ success: true, message: `User ${username} created successfully.` }),
     createFailed:     (username, err) => ({ success: false, message: 'Failed to create user' + (username ? ` '${username}'` : '') + '.' + (err ? ' ' + err : '') }),
@@ -17,24 +17,15 @@ const messages = {
  * Creates a new user account.
  * @param user {Object} new user account to create.
  */
-const create = (user) =>
+export const create = (user) =>
     new Promise((resolve, reject) =>
         validateUser(user)
             .then(setUserId)
             .then(hashUsersPassword)
             .then(setValidationToken)
-            .then(storage.createUser)
+            .then(createUser)
             .then(user => resolve(messages.create(user.emailAddress)))
             .catch(err => reject(_.isString(err) ? messages.createFailed(user.emailAddress, err) : err)));
-
-//const validateUser = (user) =>
-//    new Promise((resolve, reject) => {
-//        if (!user) return reject(messages.validationFailed(null, messages.argumentNull('user')));
-//        if (!user.appId) return reject(messages.validationFailed(null, messages.argumentNull('appId')));
-//        if (!user.password) return reject(messages.validationFailed(user.username, messages.argumentNull('password')));
-//        if (!user.emailAddress) return reject(messages.validationFailed(user.username, messages.argumentNull('emailAddress')));
-//        resolve(user);
-//    });
 
 const validateUser = (user) =>
     !user              ? Promise.reject(messages.validationFailed(null, messages.argumentNull('user'))) :
@@ -47,12 +38,7 @@ const setUserId = (user) =>
     _.assign(_.cloneDeep(user), { userId: user.emailAddress + '|' + user.appId });
 
 const setValidationToken = (user) =>
-    _.assign(_.cloneDeep(user), { validationToken: crypto.generateUuid('base58') });
+    _.assign(_.cloneDeep(user), { validationToken: generateUuid('base58') });
 
 const hashUsersPassword = (user) =>
-    _.assign(_.cloneDeep(user), { password: crypto.hashSync(user.password) });
-
-module.exports = {
-    create,
-    messages
-};
+    _.assign(_.cloneDeep(user), { password: hashSync(user.password) });

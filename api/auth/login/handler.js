@@ -1,9 +1,9 @@
 'use strict';
 
-const authentication = require('../../services/authentication');
+import { login } from '../../services/authentication';
 
 module.exports.handler = (event, context) =>
-    authentication.login({
+    login({
             appId: event.appId,
             emailAddress: event.emailAddress,
             password: event.password
